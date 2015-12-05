@@ -1,14 +1,15 @@
 {
   "name": "ufunc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Ufunc is a set of JavaScript functional methods",
   "keywords": ["javascript", "ramda", "functional programming"],
   "repository": "git@github.com:otissv/ufunc.git",
   "author": "Otis Virginie",
   "license": "MIT",
-  "main": "./index.js",
+  "main": "./lib/ufunc.js",
   "scripts": {
-    "build": "babel-node ./build.js",
+    "build": "babel -d lib/ src/",
+    "prepublish": "npm run build" ,
     "lint": "eslint --quiet ./**  || true",
     "lint:watch": "watch 'npm run lint' ./",
     "prebuild": "npm run test",

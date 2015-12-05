@@ -1,7 +1,7 @@
 'use strict';
 
 import test from 'tape';
-import utils from '../../index.js';
+import utils from '../../lib/ufunc.js';
 
 
 test('Ufunc Module.', nested => {
