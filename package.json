@@ -1,6 +1,6 @@
 {
   "name": "ufunc",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Ufunc is a set of JavaScript functional methods",
   "keywords": ["javascript", "ramda", "functional programming"],
   "repository": "git@github.com:otissv/ufunc.git",
@@ -23,7 +23,6 @@
   "devDependencies": {
     "babel-core": "~6.2.1",
     "babel-eslint": "~4.1.5",
-    "babel-loader": "^6.2.0",
     "babel-preset-es2015": "~6.1.18",
     "babel-preset-stage-0": "~6.1.18",
     "babelify": "^7.2.0",
