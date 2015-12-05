@@ -24,8 +24,7 @@ Revome all null and undefined items from array.
 
 ```sh
 clean([0, 1, null, 2, undefined, 3]);
-
-// [0, 1, 2, 3]
+//=> [0, 1, 2, 3]
 ```
 
 
@@ -34,8 +33,7 @@ Revome all null and undefined items from list.
 
 ```sh
 utils.cleanAll([0, 1, null, 2, undefined, 3]);
-
-// [1, 2, 3]
+//=> [1, 2, 3]
 ```
 
 
@@ -44,8 +42,7 @@ Revome all null, undefined and 0 Key/value pairs from object.
 
 ```sh
 cleanObj({a: 1, b: undefined, c: null, d: 'otis', e: 0});
-
-// {a: 1, d: 'otis', e:0}
+//=> {a: 1, d: 'otis', e:0}
 ```
 
 
@@ -54,8 +51,7 @@ Revome all null, undefined and 0 Key/value pairs from object.
 
 ```sh
 cleanObjAll({a: 1, b: undefined, c: null, d: 'otis', e: 0});
-
-// {a: 1, d: 'otis'}
+//=> {a: 1, d: 'otis'}
 ```
 
 #### filterObjetsInList
@@ -80,7 +76,7 @@ var search = [
 ];
 
 filterObjetsInList(fn, criteria, search)();
-
+//=>
 // [
 //   {name: 'Otis', message: 'hello'},
 //   {name: 'Otis', message: 'What time do you finish work'}
@@ -92,13 +88,11 @@ Maps a function over a container and returns a new container.
 
 ```sh
 fmap(x => x + 3, container, 10)();
-
-// { value: 13 }
+//=> { value: 13 }
 
 
 fmap(x => x + 3, container)();
-
-// { value: null }
+//=> { value: null }
 ```
 
 
@@ -107,44 +101,35 @@ Executes left if any of the condition are true, else right if false.
 
 ```sh
 ifElse('left', 'right')(true),
-
-// 'left'
+//=> 'left'
 
 
 ifElse(() => 'left', () => 'right')(true);
-
-// 'left'
+//=> 'left'
 
 
 ifElse('left', 'right')(false);
-
-// 'right'
+//=> 'right'
 
 
 ifElse(() => 'left', () => 'right')(false);
-
-// 'right'
+//=> 'right'
 
 
 ifElse([true, false])('left', 'right');
-
-//: 'left'
+//=> 'left'
 
 
 ifElse([true, false])(() => 'left', () => 'right');
-
-// 'left'
+//=> 'left'
 
 
 ifElse([false, false])('left', 'right'),
-
 // 'right'
 
 
 ifElse([false, false])(() => 'left', () => 'right');
-
-
-// 'right'
+//=> 'right'
 ```
 
 
@@ -154,18 +139,15 @@ An optional second argument can be passed to be used as the return value if fals
 
 ```sh
 maybe()('Jack Bower');
-
-//: 'Jack Bower'
+//=> 'Jack Bower'
 
 
 maybe()(null);
-
-// null
+//=> null
 
 
 maybe([])(null);
-
-// []
+//=> []
 ```
 
 #### maybeIf
@@ -174,18 +156,15 @@ An optional second argument can be passed to be used as the return value if fals
 
 ```sh
 maybeIf('Jack Bower')(true);
-
-//: 'Jack Bower'
+//=> 'Jack Bower'
 
 
 utils.maybeIf(null)();
-
-// null
+//=> null
 
 
 maybeIf(null)(false, []),;
-
-// []
+//=> []
 ```
 
 
@@ -201,7 +180,7 @@ var fixtures = [
 ];
 
 pickKeyValuesFromList(['id', 'email', 'status'], fixtures);
-
+//=>
 // [
 //   {id: 'id1', email: 'user1@test.com', status: 'online'},
 //   {id: 'id2', email: 'user2@test.com', status: 'online'},
