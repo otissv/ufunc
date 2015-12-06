@@ -82,13 +82,13 @@ const utils = {
 
 
   /**
-   * xecutes left if any of the condition are true, else right if false.
+   * Executes left if any of the condition are true, else right if false.
    * @param  {any}   left        If true.
    * @param  {any}   right       If fasle.
    * @param  {array} conditions  Array of conditions to be evaluated.
    * @return {any}               Execute left if true else right if false.
    */
-  ifElse (left, right) {
+  either (left, right) {
     return R.curry((conditions) => {
       let conditionsBool = Array.isArray(conditions) ? conditions.map(c => Boolean(c)).some(b => b === true) : Boolean(conditions);
 
@@ -119,24 +119,6 @@ const utils = {
   */
   maybeIf (value) {
     return R.curry((condition = false, emptyType = null) => !condition ? emptyType : value);
-  },
-
-
-  /**
-   * Executes left if condition is true, else right if false'
-   * @param  {any} left       If true.
-   * @param  {any} right      If fasle.
-   * @param  {any} condition  Condition to be evaluated.
-   * @return {any}            Execute left if true else right if false.
-   */
-  orElse (left, right) {
-    return R.curry((conditions) => {
-      const conditionsToBool = conditions.map(c => Boolean(c)).some(b => b === true);
-
-      if (conditionsToBool) return (typeof left === 'function') ? left() : left;
-
-      return (typeof right === 'function') ? right() : right;
-    });
   },
 
 

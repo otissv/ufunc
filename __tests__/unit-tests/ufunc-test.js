@@ -123,10 +123,10 @@ test('Ufunc Module.', nested => {
 
 
   nested.test(
-    'ifElse - Executes left if any of the condition are true, else right if false.',
+    'either - Executes left if any of the condition are true, else right if false.',
     assert => {
       const trueAssert = {
-        actual: utils.ifElse('left', 'right')(true),
+        actual: utils.either('left', 'right')(true),
         expect: 'left'
       };
 
@@ -135,7 +135,7 @@ test('Ufunc Module.', nested => {
 
 
       const trueFunctionAssert = {
-        actual: utils.ifElse(() => 'left', () => 'right')(true),
+        actual: utils.either(() => 'left', () => 'right')(true),
         expect: 'left'
       };
 
@@ -144,7 +144,7 @@ test('Ufunc Module.', nested => {
 
 
       const falseAssert = {
-        actual: utils.ifElse('left', 'right')(false),
+        actual: utils.either('left', 'right')(false),
         expect: 'right'
       };
 
@@ -153,7 +153,7 @@ test('Ufunc Module.', nested => {
 
 
       const falseFunctionAssert = {
-        actual: utils.ifElse(() => 'left', () => 'right')(false),
+        actual: utils.either(() => 'left', () => 'right')(false),
         expect: 'right'
       };
 
@@ -162,7 +162,7 @@ test('Ufunc Module.', nested => {
 
 
       const arrayTrueAssert = {
-        actual: utils.ifElse('left', 'right')([true, false]),
+        actual: utils.either('left', 'right')([true, false]),
         expect: 'left'
       };
 
@@ -171,7 +171,7 @@ test('Ufunc Module.', nested => {
 
 
       const arrayTrueFunctionAssert = {
-        actual: utils.ifElse(() => 'left', () => 'right')([true, false]),
+        actual: utils.either(() => 'left', () => 'right')([true, false]),
         expect: 'left'
       };
 
@@ -180,7 +180,7 @@ test('Ufunc Module.', nested => {
 
 
       const arrayFalseAssert = {
-        actual: utils.ifElse('left', 'right')([false, false]),
+        actual: utils.either('left', 'right')([false, false]),
         expect: 'right'
       };
 
@@ -189,7 +189,7 @@ test('Ufunc Module.', nested => {
 
 
       const ArrayFalseFunctionAssert = {
-        actual: utils.ifElse(() => 'left', () => 'right')([false, false]),
+        actual: utils.either(() => 'left', () => 'right')([false, false]),
         expect: 'right'
       };
 
