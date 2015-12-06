@@ -96,39 +96,39 @@ fmap(x => x + 3, container)();
 ```
 
 
-#### ifElse
+#### either
 Executes left if any of the condition are true, else right if false.
 
 ```sh
-ifElse('left', 'right')(true),
+either('left', 'right')(true),
 //=> 'left'
 
 
-ifElse(() => 'left', () => 'right')(true);
+either(() => 'left', () => 'right')(true);
 //=> 'left'
 
 
-ifElse('left', 'right')(false);
+either('left', 'right')(false);
 //=> 'right'
 
 
-ifElse(() => 'left', () => 'right')(false);
+either(() => 'left', () => 'right')(false);
 //=> 'right'
 
 
-ifElse([true, false])('left', 'right');
+either([true, false])('left', 'right');
 //=> 'left'
 
 
-ifElse([true, false])(() => 'left', () => 'right');
+either([true, false])(() => 'left', () => 'right');
 //=> 'left'
 
 
-ifElse([false, false])('left', 'right'),
+either([false, false])('left', 'right'),
 // 'right'
 
 
-ifElse([false, false])(() => 'left', () => 'right');
+either([false, false])(() => 'left', () => 'right');
 //=> 'right'
 ```
 
