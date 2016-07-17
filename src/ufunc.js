@@ -1,10 +1,10 @@
 'use strict';
-//import R from 'ramda';
 import curry from 'ramda/src/curry';
 import pipe from 'ramda/src/pipe';
 import fromPairs from 'ramda/src/fromPairs';
 import toPairs from 'ramda/src/toPairs';
 import pickAll from 'ramda/src/pickAll';
+import map from 'ramda/src/map';
 
 const utils = {
   /**
@@ -32,13 +32,12 @@ const utils = {
    * @return {object}      - New list with false items removed
    */
   cleanObj (obj) {
-    const cleaned = R.map(p => {
+    const cleaned = map(p => {
       if (p[1] != null) {
         return [p[0], p[1]];
       }
     });
 
-    // return R.pipe(R.toPairs, cleaned, R.fromPairs)(obj);
     return pipe(toPairs, cleaned, fromPairs)(obj);
   },
 
@@ -49,7 +48,7 @@ const utils = {
    * @return {object}      - New list with false items removed
    */
   cleanObjAll (obj) {
-    const cleaned = R.map(p => {
+    const cleaned = map(p => {
       if (p[1] != null && p[1] !== 0) {
         return [p[0], p[1]];
       }
