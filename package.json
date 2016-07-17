@@ -22,7 +22,7 @@
     "test:spec": "babel-node test-runner.js | tap-difflet || true",
     "test:watch": "watch 'npm run test' ./"
   },
-  "dependencies": {
+  "peerDependencies": {
     "ramda": "~0.21.0"
   },
   "devDependencies": {
@@ -32,6 +32,7 @@
     "eslint-config-standard": "^5.3.0",
     "eslint-plugin-smells": "^1.0.1",
     "glob": "^7.0.5",
+    "ramda": "^0.21.0",
     "tap-difflet": "^0.6.0",
     "tap-min": "^1.0.0",
     "tape": "^4.6.0",
