@@ -28,7 +28,7 @@ const utils = {
    */
   cleanObj (obj) {
     Object.keys(obj).forEach(key =>
-      (obj[key] && typeof obj[key] === 'object') && removeEmpty(obj[key]) ||
+      (obj[key] && typeof obj[key] === 'object') && this.cleanObj(obj[key]) ||
       (obj[key] == undefined) && delete obj[key]
     );
     return obj;
@@ -42,14 +42,14 @@ const utils = {
    */
   cleanObjAll (obj) {
     Object.keys(obj).forEach(key =>
-      (obj[key] && typeof obj[key] === 'object') && removeEmpty(obj[key]) ||
+      (obj[key] && typeof obj[key] === 'object') && this.cleanObj(obj[key]) ||
       (obj[key] == null || obj[key] == 0) && delete obj[key]
     );
     return obj;
   },
 
   curry (fn) {
-    return function f1(a) {
+    return function f1 (a) {
       return fn.apply(this, arguments);
     };
   },
@@ -131,7 +131,7 @@ const utils = {
   */
   pickKeyValuesFromList (propsList, objectsList) {
     return objectsList.map(obj => {
-      function pickAll(propsList, obj) {
+      function pickAll (propsList, obj) {
         var result = {};
         var idx = 0;
         var len = propsList.length;
