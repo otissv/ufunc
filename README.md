@@ -2,6 +2,9 @@
 
 Ufunc is a set of JavaScript functional methods.
 
+
+NOTE: No longer depends on Ramda;
+
 ### Installation
 ```sh
 $ npm install ufunc

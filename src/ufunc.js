@@ -1,10 +1,5 @@
 'use strict';
-import curry from 'ramda/src/curry';
-import pipe from 'ramda/src/pipe';
-import fromPairs from 'ramda/src/fromPairs';
-import toPairs from 'ramda/src/toPairs';
-import pickAll from 'ramda/src/pickAll';
-import map from 'ramda/src/map';
+
 
 const utils = {
   /**
@@ -32,13 +27,11 @@ const utils = {
    * @return {object}      - New list with false items removed
    */
   cleanObj (obj) {
-    const cleaned = map(p => {
-      if (p[1] != null) {
-        return [p[0], p[1]];
-      }
-    });
-
-    return pipe(toPairs, cleaned, fromPairs)(obj);
+    Object.keys(obj).forEach(key =>
+      (obj[key] && typeof obj[key] === 'object') && removeEmpty(obj[key]) ||
+      (obj[key] == undefined) && delete obj[key]
+    );
+    return obj;
   },
 
 
@@ -48,13 +41,17 @@ const utils = {
    * @return {object}      - New list with false items removed
    */
   cleanObjAll (obj) {
-    const cleaned = map(p => {
-      if (p[1] != null && p[1] !== 0) {
-        return [p[0], p[1]];
-      }
-    });
+    Object.keys(obj).forEach(key =>
+      (obj[key] && typeof obj[key] === 'object') && removeEmpty(obj[key]) ||
+      (obj[key] == null || obj[key] == 0) && delete obj[key]
+    );
+    return obj;
+  },
 
-    return pipe(toPairs, cleaned, fromPairs)(obj);
+  curry (fn) {
+    return function f1(a) {
+      return fn.apply(this, arguments);
+    };
   },
 
 
@@ -66,7 +63,7 @@ const utils = {
   *  @return {array}                           New list of objects with only filterd properties
   */
   filterObjetsInList (fn, criteria, search) {
-    return curry(() => this.clean(criteria.map(c => search.map(s => fn(c, s)))[0]));
+    return this.curry(() => this.clean(criteria.map(c => search.map(s => fn(c, s)))[0]));
   },
 
 
@@ -79,10 +76,10 @@ const utils = {
   */
   fmap (f, container, val) {
     if (val == null) {
-      return curry(() => container(null));
+      return this.curry(() => container(null));
     };
 
-    return curry(() => container(f(val)));
+    return this.curry(() => container(f(val)));
   },
 
 
@@ -94,7 +91,7 @@ const utils = {
    * @return {any}               Execute left if true else right if false.
    */
   either (left, right) {
-    return curry((conditions) => {
+    return this.curry((conditions) => {
       let conditionsBool = Array.isArray(conditions) ? conditions.map(c => Boolean(c)).some(b => b === true) : Boolean(conditions);
 
       if (conditionsBool) return (typeof left === 'function') ? left() : left;
@@ -111,7 +108,7 @@ const utils = {
   * @return {any}             Returns value or emptyType.
   */
   maybe (emptyType = null) {
-    return curry((value) => value == null ? emptyType : value);
+    return this.curry((value) => value == null ? emptyType : value);
   },
 
 
@@ -123,7 +120,7 @@ const utils = {
   * @return {any}               Returns value or emptyType based on condition.
   */
   maybeIf (value) {
-    return curry((condition = false, emptyType = null) => !condition ? emptyType : value);
+    return this.curry((condition = false, emptyType = null) => !condition ? emptyType : value);
   },
 
 
@@ -133,7 +130,21 @@ const utils = {
   * @return {array}              New array of objects only containing the picked items.
   */
   pickKeyValuesFromList (propsList, objectsList) {
-    return objectsList.map(i => pickAll(propsList, i));
+    return objectsList.map(obj => {
+      function pickAll(propsList, obj) {
+        var result = {};
+        var idx = 0;
+        var len = propsList.length;
+        while (idx < len) {
+          var propItem = propsList[idx];
+          result[propItem] = obj[propItem];
+          idx += 1;
+        }
+        return result;
+      };
+
+      return pickAll(propsList, obj);
+    });
   }
 };
 
