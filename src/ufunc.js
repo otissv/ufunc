@@ -147,6 +147,15 @@ export function pickKeyValuesFromList (propsList, objectsList) {
 }
 
 
+function everyTrue () {
+  return [...arguments].every(e => Boolean(e));
+}
+
+function someTrue () {
+  return [...arguments].some(e => Boolean(e));
+}
+
+
 const utils = {
   clean,
   cleanAll,
@@ -156,9 +165,11 @@ const utils = {
   filterObjetsInList,
   fmap,
   either,
+  everyTrue,
   maybe,
   maybeIf,
-  pickKeyValuesFromList
+  pickKeyValuesFromList,
+  someTrue
 };
 
 
