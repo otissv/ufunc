@@ -1,10 +1,9 @@
 {
   "name": "ufunc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Ufunc is a set of JavaScript functional methods",
   "keywords": [
     "javascript",
-    "ramda",
     "functional programming"
   ],
   "repository": "git@github.com:otissv/ufunc.git",
