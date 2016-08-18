@@ -1,14 +1,26 @@
 'use strict';
 
 import test from 'tape';
-import utils from '../../lib/ufunc.js';
+import utils, {
+  clean,
+  cleanAll,
+  cleanObj,
+  cleanObjAll,
+  filterObjetsInList,
+  fmap,
+  either,
+  maybe,
+  maybeIf,
+  pickKeyValuesFromList,
+  pipe
+} from '../../lib/ufunc.js';
 
 
 test('Ufunc Module.', nested => {
   nested.test(
     'clean - Remove false values from a list, expect 0s.',
     assert => {
-      const actual = utils.clean([0, 1, null, 2, undefined, 3]);
+      const actual = clean([0, 1, null, 2, undefined, 3]);
       const expect = [0, 1, 2, 3];
 
       assert.deepEqual(actual, expect,
@@ -21,7 +33,7 @@ test('Ufunc Module.', nested => {
   nested.test(
     'cleanAll - Removes all false values from a list.',
     assert => {
-      const actual = utils.cleanAll([0, 1, null, 2, undefined, 3]);
+      const actual = cleanAll([0, 1, null, 2, undefined, 3]);
       const expect = [1, 2, 3];
 
       assert.deepEqual(actual, expect,
@@ -34,7 +46,7 @@ test('Ufunc Module.', nested => {
   nested.test(
     'cleanObj - Remove false values from a object, expect 0s.',
     assert => {
-      const actual = utils.cleanObj({a: 1, b: undefined, c: null, d: 'otis', e: 0});
+      const actual = cleanObj({a: 1, b: undefined, c: null, d: 'otis', e: 0});
       const expect = {a: 1, d: 'otis', e:0};
 
       assert.deepEqual(actual, expect,
@@ -47,7 +59,7 @@ test('Ufunc Module.', nested => {
   nested.test(
     'cleanObjAll - Remove false values from a object, expect 0s.',
     assert => {
-      const actual = utils.cleanObjAll({a: 1, b: undefined, c: null, d: 'otis', e: 0});
+      const actual = cleanObjAll({a: 1, b: undefined, c: null, d: 'otis', e: 0});
       const expect = {a: 1, d: 'otis'};
 
       assert.deepEqual(actual, expect,
@@ -77,7 +89,7 @@ test('Ufunc Module.', nested => {
         {name: 'Ania', message: 'around 6pm'}
       ];
 
-      const actual = utils.filterObjetsInList(fn, criteria, search)();
+      const actual = filterObjetsInList(fn, criteria, search)();
       const expect = [
         {name: 'Otis', message: 'hello'},
         {name: 'Otis', message: 'What time do you finish work'}
@@ -102,7 +114,7 @@ test('Ufunc Module.', nested => {
       };
 
       const mapped = {
-        actual: utils.fmap(x => x + 3, container, 10)(),
+        actual: fmap(x => x + 3, container, 10)(),
         expect: { value: 13 }
       };
 
@@ -111,7 +123,7 @@ test('Ufunc Module.', nested => {
 
 
       const nothing = {
-        actual: utils.fmap(x => x + 3, container)(),
+        actual: fmap(x => x + 3, container)(),
         expect: { value: null }
       };
 
@@ -126,7 +138,7 @@ test('Ufunc Module.', nested => {
     'either - Executes left if any of the condition are true, else right if false.',
     assert => {
       const trueAssert = {
-        actual: utils.either('left', 'right')(true),
+        actual: either('left', 'right')(true),
         expect: 'left'
       };
 
@@ -135,7 +147,7 @@ test('Ufunc Module.', nested => {
 
 
       const trueFunctionAssert = {
-        actual: utils.either(() => 'left', () => 'right')(true),
+        actual: either(() => 'left', () => 'right')(true),
         expect: 'left'
       };
 
@@ -144,7 +156,7 @@ test('Ufunc Module.', nested => {
 
 
       const falseAssert = {
-        actual: utils.either('left', 'right')(false),
+        actual: either('left', 'right')(false),
         expect: 'right'
       };
 
@@ -153,7 +165,7 @@ test('Ufunc Module.', nested => {
 
 
       const falseFunctionAssert = {
-        actual: utils.either(() => 'left', () => 'right')(false),
+        actual: either(() => 'left', () => 'right')(false),
         expect: 'right'
       };
 
@@ -162,7 +174,7 @@ test('Ufunc Module.', nested => {
 
 
       const arrayTrueAssert = {
-        actual: utils.either('left', 'right')([true, false]),
+        actual: either('left', 'right')([true, false]),
         expect: 'left'
       };
 
@@ -171,7 +183,7 @@ test('Ufunc Module.', nested => {
 
 
       const arrayTrueFunctionAssert = {
-        actual: utils.either(() => 'left', () => 'right')([true, false]),
+        actual: either(() => 'left', () => 'right')([true, false]),
         expect: 'left'
       };
 
@@ -180,7 +192,7 @@ test('Ufunc Module.', nested => {
 
 
       const arrayFalseAssert = {
-        actual: utils.either('left', 'right')([false, false]),
+        actual: either('left', 'right')([false, false]),
         expect: 'right'
       };
 
@@ -189,7 +201,7 @@ test('Ufunc Module.', nested => {
 
 
       const ArrayFalseFunctionAssert = {
-        actual: utils.either(() => 'left', () => 'right')([false, false]),
+        actual: either(() => 'left', () => 'right')([false, false]),
         expect: 'right'
       };
 
@@ -204,7 +216,7 @@ test('Ufunc Module.', nested => {
     assert => {
 
       const hasValue = {
-        actual: utils.maybe()('Jack Bower'),
+        actual: maybe()('Jack Bower'),
         expect: 'Jack Bower'
       };
 
@@ -213,7 +225,7 @@ test('Ufunc Module.', nested => {
 
 
       const nothing = {
-        actual: utils.maybe()(null),
+        actual: maybe()(null),
         expect: null
       };
 
@@ -222,7 +234,7 @@ test('Ufunc Module.', nested => {
 
 
       const empty = {
-        actual: utils.maybe([])(null),
+        actual: maybe([])(null),
         expect: []
       };
 
@@ -238,7 +250,7 @@ test('Ufunc Module.', nested => {
     assert => {
 
       const hasTrueValue = {
-        actual: utils.maybeIf('Jack Bower')(true),
+        actual: maybeIf('Jack Bower')(true),
         expect: 'Jack Bower'
       };
 
@@ -247,7 +259,7 @@ test('Ufunc Module.', nested => {
 
 
       const nothing = {
-        actual: utils.maybeIf(null)(),
+        actual: maybeIf(null)(),
         expect: null
       };
 
@@ -256,7 +268,7 @@ test('Ufunc Module.', nested => {
 
 
       const empty = {
-        actual: utils.maybeIf(null)(false, []),
+        actual: maybeIf(null)(false, []),
         expect: []
       };
 
@@ -268,6 +280,23 @@ test('Ufunc Module.', nested => {
 
 
   nested.test(
+    'pipe - Run a sequence of functions on a single value from left top righht.',
+    assert => {
+      const awesome = (v) => v + ' is Awesome!';
+      const upper = (v) => v.toUpperCase();
+      const lower = (v) => v.toLowerCase();
+
+      const actual = pipe(upper, awesome, lower)('Functional Programming');
+
+      const expect = 'functional programming is awesome!';
+
+      assert.deepEqual(actual, expect,
+        '');
+
+      assert.end();
+    });
+
+  nested.test(
     'pickPairsFromList - Picks keys/values out of an array of objects.',
     assert => {
       const fixtures = [
@@ -277,7 +306,7 @@ test('Ufunc Module.', nested => {
         {user: 'user4', id: 'id4', email: 'user4@test.com', status: 'offline', name: 'Larry'}
       ];
 
-      const actual = utils.pickKeyValuesFromList(
+      const actual = pickKeyValuesFromList(
         ['id', 'email', 'status'],
         fixtures
       );
