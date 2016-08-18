@@ -42,7 +42,7 @@ export function cleanObj (obj) {
 export function cleanObjAll (obj) {
   Object.keys(obj).forEach(key =>
     (obj[key] && typeof obj[key] === 'object') && cleanObj(obj[key]) ||
-    (obj[key] == null || obj[key] == 0) && delete obj[key]
+    (obj[key] === null || obj[key] === undefined || obj[key] === 0) && delete obj[key]
   );
   return obj;
 }
@@ -147,6 +147,7 @@ export function pickKeyValuesFromList (propsList, objectsList) {
 }
 
 
+
 export function pipe () {
   const fns = [].slice.call(arguments);
 
@@ -157,6 +158,16 @@ export function pipe () {
 
     return fns.reduce(reducer, initalValue);
   });
+}
+
+
+export function everyTrue () {
+  return [...arguments].every(e => Boolean(e));
+}
+
+
+export function someTrue () {
+  return [...arguments].some(e => Boolean(e));
 }
 
 
@@ -174,10 +185,12 @@ const utils = {
   filterObjetsInList,
   fmap,
   either,
+  everyTrue,
   maybe,
   maybeIf,
   pickKeyValuesFromList,
-  pipe
+  pipe,
+  someTrue
 };
 
 export default utils;
