@@ -1,6 +1,6 @@
 {
   "name": "ufunc",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Ufunc is a set of JavaScript functional methods",
   "keywords": [
     "javascript",
@@ -40,8 +40,5 @@
     "presets": [
       "es2015"
     ]
-  },
-  "engines": {
-    "node": "^4.4.7"
   }
 }
