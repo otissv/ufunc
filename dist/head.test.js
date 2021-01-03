@@ -1,0 +1,21 @@
+"use strict";
+/* eslint-plugin-disable functional */
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
+var head_1 = require("./head");
+describe('head', function () {
+    it('should return first item in a list', function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
+        return tslib_1.__generator(this, function (_a) {
+            expect(head_1.head([1, 2, 3, 4])).toEqual([1]);
+            return [2 /*return*/];
+        });
+    }); });
+    it('should return empty array if list is empty', function () { return tslib_1.__awaiter(void 0, void 0, void 0, function () {
+        return tslib_1.__generator(this, function (_a) {
+            expect(head_1.head([])).toEqual([]);
+            expect(head_1.head()).toEqual([]);
+            return [2 /*return*/];
+        });
+    }); });
+});
+//# sourceMappingURL=head.test.js.map

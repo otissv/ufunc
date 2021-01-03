@@ -1,36 +1,49 @@
 {
-  "env": {
-    "browser": true,
-    "node": true,
-    "mocha": true,
-  },
-
-  "ecmaFeatures": {
-    "modules": true,
-  },
-
-  "globals": {
-    "process.env": true
-  },
-
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "processor": "disable/disable",
   "plugins": [
-    "smells"
+    "@typescript-eslint",
+    "functional",
+    "prettier",
+    "disable"
   ],
-
-  "extends": "standard",
-
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended",
+    "plugin:functional/recommended"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/*.test.js"
+      ],
+      "settings": {
+        "disable/plugins": [
+          "functional"
+        ]
+      }
+    }
+  ],
   "rules": {
-    "key-spacing": 0,
-    "no-trailing-spaces": 0,
-    "no-multiple-empty-lines": [2, {"max": 2}],
-    "padded-blocks": 0,
-    "semi": [2, "always"],
-
-    "smells/no-switch": 1,
-    "smells/no-complex-switch-case": 1,
-    "smells/no-setinterval": 1,
-    "smells/no-this-assign": 1,
-    "smells/no-complex-string-concat": 1,
-    "smells/no-complex-chaining": 0
+    "prettier/prettier": [
+      "error",
+      {},
+      {
+        "usePrettierrc": true
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-types": "off",
+    "explicit-module-boundary-types": "off",
+    "functional/functional-parameters": "off",
+    "functional/no-conditional-statement": [
+      "error",
+      {
+        "allowReturningBranches": true
+      }
+    ]
   }
 }

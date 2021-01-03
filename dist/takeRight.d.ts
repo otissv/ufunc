@@ -1,0 +1,1 @@
+//# sourceMappingURL=takeRight.d.ts.map
