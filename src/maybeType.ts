@@ -9,8 +9,15 @@
  *
  * @example
  * ```
- * maybeType("", "string")("hello") // "hello"
- * maybeType("", "string")(null) // "lo"
+ * maybeType(null, "string")("hello") // "hello"
+ * maybeType(null, "number")(1) // tr1ue
+ * maybeType(null, "boolean")(true) // true
+ * maybeType(null, "object")({}) // {}
+ *
+ * maybeType(null, "string")(false) // false
+ * maybeType(null, "number")(false) // false
+ * maybeType(null, "boolean")(1) // false
+ * maybeType(null, "object")(false) // false
  * ```
  */
 export function maybeType<N>(None: N, type: string) {
@@ -27,6 +34,10 @@ export function maybeType<N>(None: N, type: string) {
  * import \{ maybeString \} from "ufunc/maybeString"
  *
  * @example
+ * ```
+ * maybeString("hello") // "hello"
+ * maybeString(null) // ""
+ * ```
  */
 export function maybeString(value: string): string {
   return maybeType('', 'string')(value);
@@ -41,7 +52,12 @@ export function maybeString(value: string): string {
  * @usage
  * import \{ maybeNumber \} from "ufunc/maybeNumber"
  *
- * @example*/
+ * @example
+ * ```
+ * maybeNumber(1) // 1
+ * maybeNumber(null) // 0
+ * ```
+ * */
 export function maybeNumber(value: number): number {
   return maybeType(0, 'number')(value);
 }
@@ -56,7 +72,10 @@ export function maybeNumber(value: number): number {
  * import \{ maybeBoolean \} from "ufunc/maybeBoolean"
  *
  * @example
- *
+ * ```
+ * maybeBoolean(true) // true
+ * maybeBoolean(null) // false
+ * ```
  */
 export function maybeBoolean(value: boolean): boolean {
   return maybeType(false, 'boolean')(value);
@@ -72,7 +91,10 @@ export function maybeBoolean(value: boolean): boolean {
  * import \{ maybeBoolean \} from "ufunc/maybeBoolean"
  *
  * @example
- *
+ * maybeObject({ a: 1 }) // { a: 1 }
+ * maybeObject([]) // []
+ * maybeObject(null) // null
+ * maybeObject("") // {}
  */
 export function maybeObject(value: Record<string, any>): Record<string, any> {
   return maybeType({}, 'object')(value);
@@ -86,7 +108,8 @@ export function maybeObject(value: Record<string, any>): Record<string, any> {
  *
  * @usage
  * import \{ maybeArray \} from "ufunc/maybeArray"
- *
+ * maybeArray([1]) // [1]
+ * maybeArray(true) // []
  * @example
  *
  */
