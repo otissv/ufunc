@@ -24,4 +24,5 @@ tslib_1.__exportStar(require("./option"), exports);
 tslib_1.__exportStar(require("./someTrue"), exports);
 tslib_1.__exportStar(require("./isUrl"), exports);
 tslib_1.__exportStar(require("./last"), exports);
+tslib_1.__exportStar(require("./chain"), exports);
 //# sourceMappingURL=index.js.map

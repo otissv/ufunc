@@ -21,4 +21,5 @@ export * from './option';
 export * from './someTrue';
 export * from './isUrl';
 export * from './last';
+export * from './chain';
 //# sourceMappingURL=index.d.ts.map

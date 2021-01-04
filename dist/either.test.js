@@ -18,6 +18,7 @@ describe('either', function () {
         expect(either_1.either(function () { return None; }, function () { return Some; })(false)).toBe(None);
         expect(either_1.either(function () { return None; }, Some)(false)).toBe(None);
         expect(either_1.either(None, function () { return Some; })(false)).toBe(None);
+        expect(either_1.either(None, function () { return undefined; })(false)).toBe(None);
     });
 });
 //# sourceMappingURL=either.test.js.map
