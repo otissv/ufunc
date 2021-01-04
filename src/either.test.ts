@@ -29,5 +29,6 @@ describe('either', () => {
     ).toBe(None);
     expect(either(() => None, Some)(false)).toBe(None);
     expect(either(None, () => Some)(false)).toBe(None);
+    expect(either(None, () => undefined)(false)).toBe(None);
   });
 });
