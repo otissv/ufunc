@@ -1,3 +1,4 @@
+/* eslint-disable functional/no-expression-statement */
 /**
  * Freezes an object and all its properties.
  *
@@ -18,6 +19,7 @@ export const deepFreeze = <T extends Record<string | number, any>>(o: T): T => {
       o[prop] !== null &&
       (typeof o[prop] === 'object' || typeof o[prop] === 'function') &&
       !Object.isFrozen(o[prop])
+      // eslint-disable-next-line functional/no-conditional-statement
     ) {
       deepFreeze(o[prop]);
     }

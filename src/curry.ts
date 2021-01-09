@@ -1,44 +1,73 @@
-function sum(a: number, b: number, c: number) {
-  return a + b + c;
+/**
+ * Returns a curried equivalent of the provided function.
+ *
+ * @param   n  - number representing an index in a string
+ * @returns Returns a function that takes a string as an argument and returns the character in the string at position n.
+ *
+ * @usage
+ * `import { curry } from "ufunc/textTransform"`
+ *
+ * @example
+ * ```
+ * const sum4 = (a: number, b: number, c: number, d: number) => a + b + c + d;
+ *
+ * const curriedSum4 = curry(sum4);
+ * const f = curriedSum4(1, 3);
+ * const g = f(3);
+ * g(4) // 10;
+ * ```
+ */
+export function curry<P extends readonly any[], ReturnType>(
+  fn: (...args: P) => ReturnType,
+): Curry<P, ReturnType> {
+  return (((...args: readonly any[]) => {
+    if (args.length >= fn.length) {
+      return (fn as Function)(...args) as ReturnType;
+    } else {
+      return (...more: readonly any[]) =>
+        (curry(fn) as Function)(...args, ...more);
+    }
+  }) as unknown) as Curry<P, ReturnType>;
 }
 
-function curry<T extends Function>(fn: T) {
-  const fnArgs: string[] = args(fn);
-  const cachedArgs: any[] = [];
+/*
+* Thanks to mbdavis
+https://stackoverflow.com/questions/65564650/typescript-type-safe-curry-function-with-n-argument-with-argumenttypes/65586028#65586028
+*/
 
-  type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any
-    ? A
-    : never;
+// Drop N entries from array T
+type Drop<
+  N extends number,
+  T extends readonly any[],
+  I extends readonly any[] = readonly []
+> = Length<I> extends N ? T : Drop<N, Tail<T>, Prepend<Head<T>, I>>;
 
-  type FnArguments = ArgumentTypes<typeof fn>;
+// Add element E to array A (i.e Prepend<0, [1, 2]> = [0, 1, 2])
+type Prepend<E, A extends readonly any[]> = readonly [E, ...A];
 
-  const curryReducer = function curryReducer(...args: FnArguments) {
-    cachedArgs.push(...args);
-    console.log(cachedArgs);
-    return cachedArgs.length >= fnArgs.length
-      ? fn(...cachedArgs)
-      : curryReducer;
-  };
+// Get the tail of the array, i.e Tail<[0, 1, 2]> = [1, 2]
+type Tail<A extends readonly any[]> = A extends readonly [any]
+  ? readonly []
+  : A extends readonly [any, ...infer T]
+  ? T
+  : never;
 
-  return curryReducer;
-}
+// Get the head of the array, i.e Head<[0, 1, 2]> = 0
+type Head<A extends readonly any[]> = A extends readonly [infer H]
+  ? H
+  : A extends readonly [infer H, ...any]
+  ? H
+  : never;
 
-function args<T extends Function>(fn: T): string[] {
-  const match = fn
-    .toString()
-    .replace(/[\r\n\s]+/g, ' ')
-    .match(/(?:function\s*\w*)?\s*(?:\((.*?)\)|([^\s]+))/);
+// Get the length of an array
+type Length<T extends readonly any[]> = T['length'];
 
-  return match
-    ? match
-        .slice(1, 3)
-        .join('')
-        .split(/\s*,\s*/)
-    : [];
-}
+// Use type X if X is assignable to Y, otherwise Y
+type Cast<X, Y> = X extends Y ? X : Y;
 
-// const curried = curry(sum);
-// const ab = curried(1, 1);
-// const c = ab(8);
-
-// console.log(c);
+// Curry a function
+type Curry<P extends readonly any[], R> = <T extends readonly any[]>(
+  ...args: Cast<T, Partial<P>>
+) => Drop<Length<T>, P> extends readonly [any, ...(readonly any[])]
+  ? Curry<Cast<Drop<Length<T>, P>, readonly any[]>, R>
+  : R;

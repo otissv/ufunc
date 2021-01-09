@@ -17,7 +17,7 @@
  */
 export function compose<ReturnType>(
   ...fns: readonly Function[]
-): (value: any) => ReturnType {
+): <T>(value: T) => ReturnType {
   return <T>(value: T): any =>
     fns.length === 0
       ? value
