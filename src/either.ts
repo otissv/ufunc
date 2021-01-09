@@ -1,35 +1,35 @@
 /**
  * Evaluates if left and right arguments based on condition.
  *
- * @param   None - Fallback function.
- * @param   Some - Function to be evaluated.
- * @returns Return a function that take a boolean condition as an argument. If condition truthy returns Some, else returns None.
+ * @param   none      - Fallback function if condition is false.
+ * @param   some      - Function to be invoked if condition is true.
+ * @param   condition - Condition to be evaluated.
+ *
+ * @returns If condition truthy returns some, else returns none.
  *
  * @usage
  * `import \{ either \} from "ufunc/either"`
  *
  * @example
  * ```
- * either("none", "some")(true) // "some"
- * either(() => "none", () => "some")(true) // "some"
- * either(() => "none", "some")(true) // "some"
- * either("none", () => "some")(true) // "some"
+ * either("none")("some")(true) // "some"
+ * either(() => "none")(() => "some")(true) // "some"
+ * either(() => "none")("some")(true) // "some"
+ * either("none")(() => "some")(true) // "some"
  *
- * either("none", "some")(false) // "none"
- * either(()=> "none", ()=> "some")(false) // "none"
- * either(()=> "none", "some")(false) // "none"
- * either("none", ()=> "some")(false) // "none"
+ * either("none")("some")(false) // "none"
+ * either(()=> "none")(()=> "some")(false) // "none"
+ * either(()=> "none")("some")(false) // "none"
+ * either("none")(()=> "some")(false) // "none"
  * ```
  */
-export function either<None, Some>(
-  none: None,
-  some: Some,
-): <T>(condition: boolean) => T {
-  return <T>(condition: boolean): T => {
-    if (condition) {
-      return typeof some === 'function' ? some() : some;
-    } else {
-      return typeof none === 'function' ? none() : none;
-    }
-  };
-}
+export const either = <None>(none: None) => <Some>(some: Some) => <ReturnType>(
+  condition: boolean,
+): ReturnType =>
+  condition
+    ? typeof some === 'function'
+      ? some()
+      : some
+    : typeof none === 'function'
+    ? none()
+    : none;

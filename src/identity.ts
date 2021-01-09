@@ -1,6 +1,7 @@
 /**
  * Returns the first argument supplied to itself.
- * @param   arg - function argument
+ *
+ * @param   arg - Argument
  * @returns Returns the first argument supplied to itself.
  *
  * @usage
@@ -8,6 +9,5 @@
  *
  * @example
  */
-export function identity<T>(arg: T): T {
-  return arg;
-}
+export const identity = <Value>(arg: Value): Value => arg;
+export const _ = identity;

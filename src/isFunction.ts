@@ -2,6 +2,7 @@
  * Checks if value is of type function.
  *
  * @param   value - Value to be evaluated.
+ *
  * @returns Returns true if value is of type value, else returns false.
  *
  * @usage
@@ -13,4 +14,5 @@
  * isFunction(() => undefined) // true
  * ```
  */
-export const isFunction = <T>(value: T): boolean => typeof value === 'function';
+export const isFunction = <Value>(value: Value): boolean =>
+  typeof value === 'function';

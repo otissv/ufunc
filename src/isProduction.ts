@@ -11,8 +11,5 @@
  * isProduction() // true | false
  * ```
  */
-export function isProduction(): boolean {
-  return (
-    process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production'
-  );
-}
+export const isProduction = (): boolean =>
+  process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'production';

@@ -2,15 +2,13 @@
 
 import { times } from './times';
 
-describe('takeEnd', () => {
-  it('should return ', () => {
-    expect(
-      times((i: number) => ({
-        id: i,
-      }))(4),
-    ).toEqual([{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }]);
+describe('times', () => {
+  it('should ', () => {
     expect(times((i: number) => i)(4)).toEqual([0, 1, 2, 3]);
-    expect(times((i: number) => i + 1)(4)).toEqual([1, 2, 3, 4]);
+    expect(times((i: number) => ({ _id: i }))(2)).toEqual([
+      { _id: 0 },
+      { _id: 1 },
+    ]);
   });
 
   it('should return empty array ', () => {

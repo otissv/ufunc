@@ -11,6 +11,4 @@
  * isTest() // true | false
  * ```
  */
-export function isTest(): boolean {
-  return process.env.NODE_ENV === 'test';
-}
+export const isTest = (): boolean => process.env.NODE_ENV === 'test';

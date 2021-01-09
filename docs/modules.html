@@ -65,6 +65,7 @@
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#argnames" class="tsd-kind-icon">arg<wbr>Names</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#chain" class="tsd-kind-icon">chain</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#clean" class="tsd-kind-icon">clean</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#compose" class="tsd-kind-icon">compose</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#either" class="tsd-kind-icon">either</a></li>
@@ -85,11 +86,6 @@
 								<li class="tsd-kind-function"><a href="modules.html#isvalidstring" class="tsd-kind-icon">is<wbr>Valid<wbr>String</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#last" class="tsd-kind-icon">last</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#maybe" class="tsd-kind-icon">maybe</a></li>
-								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#maybearray" class="tsd-kind-icon">maybe<wbr>Array</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#maybeboolean" class="tsd-kind-icon">maybe<wbr>Boolean</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#maybenumber" class="tsd-kind-icon">maybe<wbr>Number</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#maybeobject" class="tsd-kind-icon">maybe<wbr>Object</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#maybestring" class="tsd-kind-icon">maybe<wbr>String</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#option" class="tsd-kind-icon">option</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#sometrue" class="tsd-kind-icon">some<wbr>True</a></li>
 							</ul>
@@ -109,7 +105,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in argNames.ts:17</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/argNames.ts#L17">argNames.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -148,6 +144,56 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="chain" class="tsd-anchor"></a>
+					<h3>chain</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">chain&lt;ReturnType&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>fns<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ChainType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/chain.ts#L28">chain.ts:28</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Lazy evaluates a sequence of functions.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>method</dt>
+									<dd><p>chain</p>
+									</dd>
+									<dt>method</dt>
+									<dd><p>exec</p>
+									</dd>
+									<dt>usage</dt>
+									<dd><p><code>import \{ chain \} from &quot;ufunc/chain&quot;</code></p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code><span style="color: #795E26">chain</span><span style="color: #000000">(</span><span style="color: #001080">toUpperCase</span><span style="color: #000000">).</span><span style="color: #795E26">chain</span><span style="color: #000000">(</span><span style="color: #001080">toSnake</span><span style="color: #000000">).</span><span style="color: #795E26">exec</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hello world&#039;</span><span style="color: #000000">) </span><span style="color: #008000">// HELLO_WORLD</span>
+</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>ReturnType</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>fns: <span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ChainType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns a transformed value, where the previous functions output becomes the input of the next function.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
 					<a name="clean" class="tsd-anchor"></a>
 					<h3>clean</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
@@ -157,7 +203,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in clean.ts:18</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/clean.ts#L18">clean.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -231,13 +277,13 @@
 					<a name="compose" class="tsd-anchor"></a>
 					<h3>compose</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">compose&lt;ReturnType&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>fns<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ReturnType</span></li>
+						<li class="tsd-signature tsd-kind-icon">compose&lt;ReturnType&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>fns<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span>&lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ReturnType</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in compose.ts:18</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/compose.ts#L18">compose.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -272,19 +318,25 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ReturnType</span></h4>
+							<h4 class="tsd-returns-title">Returns &lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">ReturnType</span></h4>
 							<p>Returns a function that takes a single argument will be mapped over.</p>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-signature">
-									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReturnType</span></li>
+									<ul class="tsd-signatures tsd-kind-type-literal tsd-has-type-parameter">
+										<li class="tsd-signature tsd-kind-icon">&lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReturnType</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
+											<h4 class="tsd-type-parameters-title">Type parameters</h4>
+											<ul class="tsd-type-parameters">
+												<li>
+													<h4>T</h4>
+												</li>
+											</ul>
 											<h4 class="tsd-parameters-title">Parameters</h4>
 											<ul class="tsd-parameters">
 												<li>
-													<h5>value: <span class="tsd-signature-type">any</span></h5>
+													<h5>value: <span class="tsd-signature-type">T</span></h5>
 												</li>
 											</ul>
 											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReturnType</span></h4>
@@ -305,7 +357,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in either.ts:24</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/either.ts#L24">either.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -393,7 +445,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in eitherPromise.ts:54</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/eitherPromise.ts#L54">eitherPromise.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -511,7 +563,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in everyTrue.ts:16</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/everyTrue.ts#L16">everyTrue.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -559,7 +611,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in first.ts:16</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/first.ts#L16">first.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -607,7 +659,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in head.ts:16</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/head.ts#L16">head.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -655,7 +707,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in identity.ts:11</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/identity.ts#L11">identity.ts:11</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -700,7 +752,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in isDev.ts:14</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/isDev.ts#L14">isDev.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -732,7 +784,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in isEmpty.ts:19</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/isEmpty.ts#L19">isEmpty.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -784,7 +836,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in isFunction.ts:16</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/isFunction.ts#L16">isFunction.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -832,7 +884,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in isLength.ts:11</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/isLength.ts#L11">isLength.ts:11</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -841,7 +893,7 @@
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>usage</dt>
-									<dd><p><code>import \{ eitherPromise \} from &quot;ufunc/eitherPromise&quot;</code></p>
+									<dd><p><code>import \{ isLength \} from &quot;ufunc/isLength&quot;</code></p>
 									</dd>
 									<dt>example</dt>
 									<dd></dd>
@@ -895,7 +947,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in isProduction.ts:14</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/isProduction.ts#L14">isProduction.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -927,7 +979,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in isString.ts:17</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/isString.ts#L17">isString.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -970,7 +1022,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in isStringNumber.ts:17</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/isStringNumber.ts#L17">isStringNumber.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1013,7 +1065,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in isTest.ts:14</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/isTest.ts#L14">isTest.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1045,7 +1097,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in isUrl.ts:14</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/isUrl.ts#L14">isUrl.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1085,7 +1137,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in isValidString.ts:15</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/isValidString.ts#L15">isValidString.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1126,7 +1178,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in last.ts:17</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/last.ts#L17">last.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1169,13 +1221,13 @@
 					<a name="maybe" class="tsd-anchor"></a>
 					<h3>maybe</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">maybe&lt;None&gt;<span class="tsd-signature-symbol">(</span>none<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">None</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span>&lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></li>
+						<li class="tsd-signature tsd-kind-icon">maybe&lt;None&gt;<span class="tsd-signature-symbol">(</span>none<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">None</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span>&lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">None</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in maybe.ts:15</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/maybe.ts#L14">maybe.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1205,12 +1257,12 @@
 									<h5>none: <span class="tsd-signature-type">None</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns &lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h4>
+							<h4 class="tsd-returns-title">Returns &lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">None</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></h4>
 							<p>Returns a function that takes a value as an argument, which returns value if it is defined, else returns None</p>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-signature">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-has-type-parameter">
-										<li class="tsd-signature tsd-kind-icon">&lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+										<li class="tsd-signature tsd-kind-icon">&lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">None</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -1226,203 +1278,11 @@
 													<h5>value: <span class="tsd-signature-type">T</span></h5>
 												</li>
 											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">None</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">T</span></h4>
 										</li>
 									</ul>
 								</li>
 							</ul>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
-					<a name="maybearray" class="tsd-anchor"></a>
-					<h3>maybe<wbr>Array</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">maybe<wbr>Array&lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in maybe.ts:113</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Checks if value is an array</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>usage</dt>
-									<dd><p>import { maybeArray } from &quot;ufunc/maybeArray&quot;</p>
-									</dd>
-									<dt>example</dt>
-									<dd></dd>
-								</dl>
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>T</h4>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
-							<p>Returns a function that takes a value as an argument, which returns value if the value is an array, else returns an empty array</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="maybeboolean" class="tsd-anchor"></a>
-					<h3>maybe<wbr>Boolean</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">maybe<wbr>Boolean<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in maybe.ts:79</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Checks if value is ot type boolean</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>usage</dt>
-									<dd><p>import { maybeBoolean } from &quot;ufunc/maybeBoolean&quot;</p>
-									</dd>
-									<dt>example</dt>
-									<dd></dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">boolean</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>function that takes a value as an argument, which returns the value if the value is a boolean, else return false.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="maybenumber" class="tsd-anchor"></a>
-					<h3>maybe<wbr>Number</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">maybe<wbr>Number<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in maybe.ts:62</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Checks if value is of type number.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>usage</dt>
-									<dd><p>import { maybeNumber } from &quot;ufunc/maybeNumber&quot;</p>
-									</dd>
-									<dt>example</dt>
-									<dd></dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Value to be evaluated.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>Returns a function that takes a value as an argument, which returns the value if the value is a number, else returns 0.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="maybeobject" class="tsd-anchor"></a>
-					<h3>maybe<wbr>Object</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">maybe<wbr>Object<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in maybe.ts:96</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Checks if value is ot type boolean</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>usage</dt>
-									<dd><p>import { maybeBoolean } from &quot;ufunc/maybeBoolean&quot;</p>
-									</dd>
-									<dt>example</dt>
-									<dd></dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>function that takes a value as an argument, which returns the value if the value is a boolean, else return false.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="maybestring" class="tsd-anchor"></a>
-					<h3>maybe<wbr>String</h3>
-					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">maybe<wbr>String<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in maybe.ts:47</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Checks if value is of type string.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>usage</dt>
-									<dd><p>import { maybeString } from &quot;ufunc/maybeString&quot;</p>
-									</dd>
-									<dt>example</dt>
-									<dd></dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>value: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Value to be evaluated.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>Returns a function which takes a value as an argument. Returns value if value is a string, else return an empty string.</p>
 						</li>
 					</ul>
 				</section>
@@ -1436,7 +1296,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in option.ts:26</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/option.ts#L26">option.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1502,7 +1362,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in someTrue.ts:18</li>
+									<li>Defined in <a href="https://github.com/otissv/ufunc/blob/7682313/src/someTrue.ts#L18">someTrue.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1556,6 +1416,9 @@
 				<ul class="before-current">
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="modules.html#argnames" class="tsd-kind-icon">arg<wbr>Names</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#chain" class="tsd-kind-icon">chain</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="modules.html#clean" class="tsd-kind-icon">clean</a>
@@ -1616,21 +1479,6 @@
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="modules.html#maybe" class="tsd-kind-icon">maybe</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#maybearray" class="tsd-kind-icon">maybe<wbr>Array</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#maybeboolean" class="tsd-kind-icon">maybe<wbr>Boolean</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#maybenumber" class="tsd-kind-icon">maybe<wbr>Number</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#maybeobject" class="tsd-kind-icon">maybe<wbr>Object</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#maybestring" class="tsd-kind-icon">maybe<wbr>String</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="modules.html#option" class="tsd-kind-icon">option</a>

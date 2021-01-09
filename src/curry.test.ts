@@ -4,11 +4,13 @@ import { curry } from './curry';
 
 describe('curry', () => {
   it('should return ', () => {
-    const sum4 = (a: number, b: number, c: number, d: number) => a + b + c + d;
+    const sum4 = (a: number, b: number, c: number, d: number) => () =>
+      a + b + c + d;
 
     const curriedSum4 = curry(sum4);
     const f = curriedSum4(1, 2);
     const g = f(3);
-    expect(g(4)).toBe(10);
+    const result = g(4)();
+    expect(result).toBe(10);
   });
 });

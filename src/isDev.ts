@@ -11,8 +11,5 @@
  * isDev() // true | false
  * ```
  */
-export function isDev(): boolean {
-  return (
-    process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'development'
-  );
-}
+export const isDev = (): boolean =>
+  process.env.NODE_ENV === 'dev' || process.env.NODE_ENV === 'development';

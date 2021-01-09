@@ -1,7 +1,8 @@
 /***
- * Returns the first item in a array.
+ * Returns the first item in a list.
  *
  * @param   list - An Array.
+ *
  * @returns Returns the first item in a array.
  *
  * @usage
@@ -13,6 +14,5 @@
  * first([]) // undefined
  * ```
  */
-export function first<T>(list: readonly T[]): T | undefined {
-  return Array.isArray(list) ? list[0] : undefined;
-}
+export const first = <Value>(list: readonly Value[]): Value | undefined =>
+  Array.isArray(list) ? list[0] : undefined;

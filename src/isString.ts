@@ -2,7 +2,8 @@
  * Checks if string is a number
  *
  * @param   value  - Value to be evaluated.
- * @returns true if value is a string.
+ *
+ * @returns Returns true if value is a string.
  *
  * @usage
  * `import \{ isString \} from "ufunc/isString"`
@@ -14,6 +15,5 @@
  * isStringNumber(1 ) // false
  * ```
  */
-export function isString(value: string): boolean {
-  return typeof value === 'string';
-}
+export const isString = <Value>(value: Value): boolean =>
+  typeof value === 'string';

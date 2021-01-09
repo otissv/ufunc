@@ -1,11 +1,12 @@
 /**
  * Returns a curried equivalent of the provided function.
  *
- * @param   n  - number representing an index in a string
- * @returns Returns a function that takes a string as an argument and returns the character in the string at position n.
+ * @param   fn  - Function to be curried.
+ *
+ * @returns Returns a partial applied function which takes the remaining arguments.
  *
  * @usage
- * `import { curry } from "ufunc/textTransform"`
+ * `import { curry } from "ufunc/curry"`
  *
  * @example
  * ```
@@ -17,9 +18,9 @@
  * g(4) // 10;
  * ```
  */
-export function curry<P extends readonly any[], ReturnType>(
-  fn: (...args: P) => ReturnType,
-): Curry<P, ReturnType> {
+export function curry<Args extends readonly any[], ReturnType>(
+  fn: (...args: Args) => ReturnType,
+): Curry<Args, ReturnType> {
   return (((...args: readonly any[]) => {
     if (args.length >= fn.length) {
       return (fn as Function)(...args) as ReturnType;
@@ -27,7 +28,7 @@ export function curry<P extends readonly any[], ReturnType>(
       return (...more: readonly any[]) =>
         (curry(fn) as Function)(...args, ...more);
     }
-  }) as unknown) as Curry<P, ReturnType>;
+  }) as unknown) as Curry<Args, ReturnType>;
 }
 
 /*

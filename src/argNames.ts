@@ -1,7 +1,8 @@
 /**
  * Returns a functions arguments names.
  *
- * @pram    fn - function whose arguments will be extracted.
+ * @param fn -  Function whose arguments will be extracted.
+ *
  * @returns Returns an array of argument names.
  *
  * @usage
@@ -14,7 +15,7 @@
  * ```
  */
 
-export function argNames<F extends Function>(fn: F): readonly string[] {
+export const argNames = <Fn extends Function>(fn: Fn): readonly string[] => {
   if (!fn) {
     return [];
   } else {
@@ -28,4 +29,4 @@ export function argNames<F extends Function>(fn: F): readonly string[] {
     const result = match.slice(1, 3).filter(Boolean);
     return result.length === 0 ? [] : result.join('').split(/\s*,\s*/);
   }
-}
+};

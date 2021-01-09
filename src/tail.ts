@@ -1,8 +1,9 @@
 /**
- * Evaluates functions in a right to left sequence. Where the return value of the previous function become the argument of the next function in the sequence
+ * Returns the tail of an array.
  *
- * @param list - An array.
- * @returns array with all but the first item in the list.
+ * @param   list  - An array.
+ *
+ * @returns  Returns an array with all but the first item in the list.
  *
  * @usage
  * `import { tail }from "ufunc/tail"`
@@ -14,6 +15,5 @@
  * tail(null) // []
  * ```
  */
-export function tail<T>(list: readonly T[]): readonly T[] {
-  return Array.isArray(list) ? list.slice(1, list.length) : [];
-}
+export const tail = <Value>(list: readonly Value[]): readonly Value[] =>
+  Array.isArray(list) ? list.slice(1, list.length) : [];

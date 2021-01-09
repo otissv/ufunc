@@ -1,8 +1,10 @@
+import { isFunction } from './isFunction';
 /**
  * Evaluates if some items in a list are truthy.
  *
- * @param   list - An array of items to be evaluated.
- * @returns Returns true if some arguments are true, else returns false
+ * @param   list  - An array of items to be evaluated.
+ *
+ * @returns Returns true if some arguments are true, else returns false.
  *
  * @usage
  * `import \{ someTrue \} from "ufunc/someTrue"`
@@ -15,6 +17,6 @@
  * someTrue([null, 0, false]) //false
  * ```
  */
-export function someTrue<T>(list: readonly T[]): boolean {
-  return [...list].some((e) => Boolean(e));
-}
+export const someTrue = <List extends readonly unknown[]>(
+  list: List,
+): boolean => [...list].some((e) => Boolean(isFunction(e) ? (e as any)() : e));

@@ -1,5 +1,5 @@
-/***
- * Returns the first item in a array.
+/**
+ * Returns the head of an array.
  *
  * @param   list - An Array.
  * @returns Returns an array with only the first item in the list.
@@ -13,6 +13,7 @@
  * head([]) // []
  * ```
  */
-export function head<T>(list: readonly T[] | string): readonly T[] {
-  return Array.isArray(list) && list.length !== 0 ? [list[0]] : [];
-}
+export const head = <Value>(
+  list: readonly Value[] | string,
+): readonly Value[] =>
+  Array.isArray(list) && list.length !== 0 ? [list[0]] : [];
